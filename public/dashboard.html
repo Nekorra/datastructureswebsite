@@ -1,0 +1,126 @@
+<html>
+    <head>
+        <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/editor-styles.css">
+
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyBK2U5Xv5OTcDGw3TMUe3k2LjAikto0C38",
+                authDomain: "website-86d25.firebaseapp.com",
+                databaseURL: "https://website-86d25.firebaseio.com",
+                projectId: "website-86d25",
+                storageBucket: "website-86d25.appspot.com",
+                messagingSenderId: "914816806451",
+                appId: "1:914816806451:web:1b85490f113c415e88fd46",
+                measurementId: "G-P6BQ4THRNW"
+            };
+            firebase.initializeApp(config);
+            const db = firebase.firestore();
+            db.settings({ timestampsInSnapshots: true }); 
+        </script>
+        
+
+
+        
+
+    </head>
+    <body>
+
+        <ul class="tabs" >
+            <li data-tab-target="#home" class="active tab">Tasks</li>
+            <li data-tab-target="#pricing" class="tab">LeaderBoard</li>
+            <li data-tab-target="#about" class="tab">Submit</li>
+        </ul>
+        
+          <div class="tab-content" > 
+            <div id="home" data-tab-content class="active">
+                <h1><u>Tasks</u></h1>
+                <br>
+                <br>
+                <div class="container-main">
+                    <h2 style="text-align: center; color: black; font-size: 50px;"><u>Question</u></h2>
+                </div>
+                    <div class="container-main"><p align="center">
+                        <iframe height="1000px" width="900px" src="https://repl.it/@SatvikEltepu2/task1?lite=true"></iframe>
+                        </p></div>
+
+            </div>
+            <div id="pricing" data-tab-content="active">
+                <h1>LeaderBoard</h1>
+                <div class="content">
+
+                    <form id="add-cafe-form">
+                        <input type="text" name="name" placeholder="Name" readonly>
+                        <input type="text" name="city" placeholder="Points" readonly style = "padding-left: 200px;">
+                    </form>
+        
+                    <ul id="cafe-list"></ul>    
+        
+                </div>
+            </div>
+            <div id="about" data-tab-content>
+                <div class="editor">
+                    <h1>Submit Code/Output</h1>
+                    <div class="editor__wrapper">
+                        <div class="editor__body">
+                            <p style = "text-align: center;">Code Goes Here: </p><br>
+                            <div id="editorCode" class="editor__code"></div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <p style = "text-align: center;">Output Goes Here:</p>
+                        <br>
+                        <div class="editor__footer">
+                            <div class="editor__footer--left">
+                                <button class="editor__btn editor__run" onclick="getCode()">Submit Code ></button>
+                                <button class="editor__btn editor__reset" onclick="getoutput()">Submit Output ></button>
+                            </div>
+                            <div class="editor__footer--right">
+                                <textarea class="editor__console-logs" id="textareaID" rows="10" cols="90"></textarea>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id = "everyone">
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/submitcode.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+            var editor = ace.edit("editorCode");
+            editor.setTheme("ace/theme/dracula");
+            editor.session.setMode("ace/mode/c_cpp");
+            document.getElementById('editorCode').style.fontSize='15px';
+
+
+        </script>
+        <script>
+            const tabs = document.querySelectorAll('[data-tab-target]')
+            const tabContents = document.querySelectorAll('[data-tab-content]')
+
+            tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = document.querySelector(tab.dataset.tabTarget)
+                tabContents.forEach(tabContent => {
+                tabContent.classList.remove('active')
+                })
+                tabs.forEach(tab => {
+                tab.classList.remove('active')
+                })
+                tab.classList.add('active')
+                target.classList.add('active')
+            })
+            })
+        </script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
